@@ -1,0 +1,9 @@
+tech:
+  - https://hnrss.org/frontpage
+  - https://www.theverge.com/rss/index.xml
+sports:
+  - https://www.espn.com/espn/rss/news
+finance:
+  - https://www.marketwatch.com/rss/topstories
+church:
+  - https://www.vaticannews.va/en.rss.xml
