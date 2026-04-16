@@ -24,7 +24,7 @@ def export_entries(
     """Export filtered entries from SQLite into a JSON file."""
     rows = query_entries(db_path=db_path, category=category, keyword=keyword, limit=limit)
     if not rows:
-        print("No rows matched the export criteria.")
+        print("No rows matched the export criteria; writing an empty JSON array.")
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(rows, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"Wrote {len(rows)} rows to {output_path}")

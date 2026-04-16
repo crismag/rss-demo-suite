@@ -43,6 +43,8 @@ def query_entries(
     order = sort_order.lower()
     if order not in {"asc", "desc"}:
         raise ValueError(f"Unsupported sort order: {sort_order}")
+    if int(limit) < 1:
+        raise ValueError("limit must be >= 1")
 
     sql = """
         SELECT
@@ -82,7 +84,7 @@ def query_entries(
 
     order_clause = ORDER_BY_MAP[f"{sort_by}:{order}"]
     sql += f" ORDER BY {order_clause} LIMIT ?"
-    params.append(max(1, int(limit)))
+    params.append(int(limit))
 
     with sqlite3.connect(str(db_path)) as conn:
         conn.row_factory = sqlite3.Row
