@@ -296,7 +296,7 @@ $statusLabel = $latestRunStatus === '' ? 'Not recorded yet' : strtoupper($latest
                             </div>
                             <p class="entry-meta">
                                 <?= escapeHtml((string) ($entry['feed_name'] ?? 'Unknown feed')) ?>
-                                •
+                                &middot;
                                 <?= escapeHtml(formatTimestamp((string) ($entry['published'] ?? ''))) ?>
                             </p>
                             <p class="entry-summary">
@@ -310,3 +310,4 @@ $statusLabel = $latestRunStatus === '' ? 'Not recorded yet' : strtoupper($latest
     </main>
 </body>
 </html>
+

@@ -1,0 +1,230 @@
+:root {
+    color-scheme: light;
+    --bg: #f4efe7;
+    --panel: rgba(255, 250, 244, 0.94);
+    --panel-border: #dbcab8;
+    --text: #221915;
+    --muted: #6a5d52;
+    --accent: #784929;
+    --accent-soft: #f2dfcf;
+    --shadow: 0 18px 36px rgba(74, 52, 31, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at top left, #fff7ee 0, transparent 28%),
+        radial-gradient(circle at bottom right, #e9d6c2 0, transparent 24%),
+        var(--bg);
+}
+
+.page-shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 56px 20px 72px;
+}
+
+.hero {
+    margin-bottom: 24px;
+}
+
+.eyebrow,
+.card-label {
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.78rem;
+    color: var(--muted);
+}
+
+h1,
+h2 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+h1 {
+    max-width: 14ch;
+    font-size: clamp(2.1rem, 5vw, 3.8rem);
+    line-height: 1;
+}
+
+.lead {
+    max-width: 72ch;
+    margin: 12px 0 0;
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.summary-card,
+.panel {
+    border: 1px solid var(--panel-border);
+    background: var(--panel);
+    box-shadow: var(--shadow);
+}
+
+.summary-card {
+    padding: 18px;
+    border-radius: 22px;
+}
+
+.summary-card h2 {
+    font-size: 2rem;
+    margin-bottom: 4px;
+}
+
+.muted {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.panel {
+    padding: 22px;
+    border-radius: 24px;
+}
+
+.panel-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.status {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    border-radius: 18px;
+    border: 1px solid #eadfd1;
+    background: rgba(255, 255, 255, 0.55);
+}
+
+.entry-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 780px;
+}
+
+.entry-table thead th {
+    position: sticky;
+    top: 0;
+    background: #f8efe4;
+    color: var(--accent);
+    text-align: left;
+    padding: 14px 16px;
+    border-bottom: 1px solid #e4d6c4;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.entry-table tbody td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #efe4d6;
+    vertical-align: top;
+}
+
+.entry-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.title-cell {
+    font-weight: 700;
+}
+
+.title-cell a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.title-cell a:hover {
+    color: var(--accent);
+}
+
+.link-pill,
+.category-pill,
+.feed-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.link-pill {
+    text-decoration: none;
+}
+
+.empty-state,
+.error-state {
+    margin: 0;
+    padding: 18px;
+    border-radius: 16px;
+    border: 1px dashed #d8c7b3;
+    color: var(--muted);
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.error-state {
+    border-style: solid;
+    border-color: #e0b9b0;
+    background: #fff2ef;
+    color: #8c4f44;
+}
+
+@media (max-width: 720px) {
+    .page-shell {
+        padding-inline: 14px;
+    }
+
+    .panel-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    h1 {
+        max-width: none;
+    }
+}

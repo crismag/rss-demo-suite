@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RSS Demo Suite - Table View</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">Table View</p>
+        <h1>Aggregated RSS entries in a simple table</h1>
+        <p class="lead">
+          This page shows how parsed feed fields can be aggregated into a clean
+          table for quick scanning on desktop and mobile screens.
+        </p>
+        <div class="hero-meta">
+          <span class="chip">Data source: exported JSON</span>
+          <span class="chip">Responsive table layout</span>
+          <span class="chip">Simple aggregation summary</span>
+        </div>
+      </header>
+
+      <section class="summary-grid" aria-label="Aggregation summary">
+        <article class="summary-card">
+          <p class="card-label">Entries</p>
+          <h2 id="entry-count">0</h2>
+          <p class="muted">Loaded from the exported feed data.</p>
+        </article>
+        <article class="summary-card">
+          <p class="card-label">Feeds</p>
+          <h2 id="feed-count">0</h2>
+          <p class="muted">Unique feed sources represented in the table.</p>
+        </article>
+        <article class="summary-card">
+          <p class="card-label">Categories</p>
+          <h2 id="category-count">0</h2>
+          <p class="muted">Distinct categories found in the export.</p>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="card-label">Entry table</p>
+            <h2>Parsed feed fields</h2>
+          </div>
+          <p id="status" class="status" aria-live="polite">Loading entries...</p>
+        </div>
+
+        <div class="table-wrap">
+          <table class="entry-table">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Feed</th>
+                <th scope="col">Category</th>
+                <th scope="col">Published</th>
+                <th scope="col">Link</th>
+              </tr>
+            </thead>
+            <tbody id="entries"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

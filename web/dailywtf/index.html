@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RSS Demo Suite - The Daily WTF</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">Source-Specific Sample</p>
+        <h1>The Daily WTF</h1>
+        <p class="lead">
+          This page is a dedicated web sample for one feed source. It keeps its
+          own files so you can export source-specific entries and compare the
+          result with the generic basic sample.
+        </p>
+        <div class="hero-meta">
+          <span class="chip">Source: The Daily WTF</span>
+          <span class="chip">Data file: <code>data/entries.json</code></span>
+          <span class="chip">Sample limit: 12 entries</span>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="card-label">Preview</p>
+            <h2>Recent source entries</h2>
+          </div>
+          <p id="status" class="status" aria-live="polite">Loading entries...</p>
+        </div>
+
+        <div id="entries" class="entries" aria-live="polite"></div>
+      </section>
+
+      <section class="notes">
+        <article class="note-card">
+          <h3>What To Export</h3>
+          <p>
+            Put The Daily WTF feed output into <code>web/dailywtf/data/entries.json</code>
+            to preview the page with source-specific content.
+          </p>
+        </article>
+
+        <article class="note-card">
+          <h3>Why This Exists</h3>
+          <p>
+            This folder is a template for feed-specific sample pages. You can
+            copy the same pattern for other sources later.
+          </p>
+        </article>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

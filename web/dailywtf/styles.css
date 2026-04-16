@@ -1,0 +1,218 @@
+:root {
+    color-scheme: dark;
+    --bg: #111012;
+    --panel: rgba(28, 24, 26, 0.92);
+    --panel-border: #3b3337;
+    --text: #f3e9df;
+    --muted: #b8a99d;
+    --accent: #ff9f43;
+    --accent-soft: rgba(255, 159, 67, 0.16);
+    --shadow: 0 20px 42px rgba(0, 0, 0, 0.28);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at top left, rgba(255, 159, 67, 0.18) 0, transparent 30%),
+        radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.06) 0, transparent 24%),
+        var(--bg);
+}
+
+.page-shell {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 56px 20px 72px;
+}
+
+.hero {
+    margin-bottom: 24px;
+}
+
+.eyebrow,
+.card-label {
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.78rem;
+    color: var(--muted);
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+h1 {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 0.96;
+}
+
+.lead {
+    max-width: 70ch;
+    margin: 12px 0 0;
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: #ffd3a0;
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.panel,
+.note-card {
+    border: 1px solid var(--panel-border);
+    background: var(--panel);
+    box-shadow: var(--shadow);
+}
+
+.panel {
+    padding: 22px;
+    border-radius: 24px;
+}
+
+.panel-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.status {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.entries {
+    display: grid;
+    gap: 14px;
+}
+
+.entry-card {
+    padding: 16px 18px;
+    border-radius: 18px;
+    border: 1px solid #473d42;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.entry-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.entry-title {
+    font-size: 1.03rem;
+    line-height: 1.4;
+}
+
+.entry-title a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.entry-title a:hover {
+    color: #ffd39c;
+}
+
+.category-pill {
+    flex-shrink: 0;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: #ffd39c;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.entry-summary {
+    margin: 10px 0 0;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.entry-meta {
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+.notes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 18px;
+}
+
+.note-card {
+    padding: 18px;
+    border-radius: 20px;
+}
+
+.note-card p {
+    margin-bottom: 0;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.empty-state,
+.error-state {
+    margin: 0;
+    padding: 18px;
+    border-radius: 16px;
+    border: 1px dashed #56484f;
+    color: var(--muted);
+}
+
+.error-state {
+    border-style: solid;
+    border-color: #915e4d;
+    background: rgba(255, 159, 67, 0.08);
+    color: #f0c0a5;
+}
+
+code {
+    padding: 0.12rem 0.35rem;
+    border-radius: 6px;
+    background: rgba(255, 159, 67, 0.12);
+    color: #ffd39c;
+}
+
+@media (max-width: 640px) {
+    .page-shell {
+        padding-inline: 14px;
+    }
+
+    .panel-header,
+    .entry-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

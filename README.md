@@ -75,8 +75,17 @@ Open `web/index.html` for the sample gallery.
 The basic static web demo reads exported JSON from
 `web/basic/data/entries.json`.
 
+The table sample shows the same data in a responsive table under `web/table/`.
+Run `python scripts/python/export_table_json.py` to populate its data file.
+
 The PHP dashboard reads the SQLite database and shows the latest ingest
 summary and newest entries from `web/php-dashboard/`.
+
+A source-specific example page also lives under `web/dailywtf/` for
+The Daily WTF feed.
+
+Additional source-specific samples live under `web/bible-votd/` and
+`web/espn/`, with Hacker News at `web/hackernews/`.
 
 Generate the file with:
 

@@ -3,14 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RSS Demo Suite - Basic</title>
+    <title>RSS Demo Suite - Basic Sample</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main>
-      <h1>RSS Demo Suite</h1>
-      <p>Latest ingested entries for the basic sample page:</p>
-      <ul id="entries"></ul>
+    <main class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">Basic Web Sample</p>
+        <h1>Latest RSS entries in a simple browser view</h1>
+        <p class="lead">
+          This page reads exported JSON from the tutorial pipeline and turns it
+          into a clean entry list you can scan in the browser.
+        </p>
+        <div class="hero-meta">
+          <span class="chip">Data source: <code>data/entries.json</code></span>
+          <span class="chip">Preview limit: 25 entries</span>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="card-label">Feed preview</p>
+            <h2>Newest exported entries</h2>
+          </div>
+          <p id="status" class="status" aria-live="polite">Loading entries...</p>
+        </div>
+
+        <div id="entries" class="entries" aria-live="polite"></div>
+      </section>
     </main>
     <script src="app.js"></script>
   </body>

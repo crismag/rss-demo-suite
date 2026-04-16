@@ -16,5 +16,10 @@ The project is organized as a tutorial pipeline:
 - `shared/python/`: reusable helpers for configuration, storage, and queries.
 - `web/basic/`: the current sample static UI.
 - `web/index.html`: the gallery landing page for the web samples.
+- `web/table/`: the responsive aggregated table sample.
 - `web/php-dashboard/`: the PHP dashboard for the shared SQLite data.
+- `web/hackernews/`: a mobile-friendly Hacker News story sample.
+- `web/bible-votd/`: the Bible Gateway Verse of the Day sample.
+- `web/espn/`: the ESPN multi-view sample.
+- `web/dailywtf/`: a source-specific sample page for The Daily WTF.
 - `web/<sample-name>/`: additional sample pages can follow the same pattern.
