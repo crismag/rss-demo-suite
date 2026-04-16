@@ -1,0 +1,13 @@
+feeds:
+  tech:
+    - name: Hacker News
+      url: https://hnrss.org/frontpage
+  sports:
+    - name: ESPN Top Headlines
+      url: https://www.espn.com/espn/rss/news
+  finance:
+    - name: MarketWatch Top Stories
+      url: https://feeds.content.dowjones.io/public/rss/mw_topstories
+  church:
+    - name: Vatican News
+      url: https://www.vaticannews.va/en.rss.xml
