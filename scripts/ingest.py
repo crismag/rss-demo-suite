@@ -4,6 +4,11 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from shared.config import load_feeds_config
 from shared.db import get_connection, init_db, insert_entry, upsert_feed
@@ -35,18 +40,17 @@ def ingest(config_path: Path, db_path: Path) -> None:
 
 def parse_args() -> argparse.Namespace:
     """Parse CLI arguments."""
-    root = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(description="Ingest RSS feeds into SQLite database.")
     parser.add_argument(
         "--config",
         type=Path,
-        default=root / "feeds.yaml",
+        default=ROOT / "feeds.yaml",
         help="Path to feeds YAML configuration file.",
     )
     parser.add_argument(
         "--db",
         type=Path,
-        default=root / "data" / "rss_demo.db",
+        default=ROOT / "data" / "rss_demo.db",
         help="Path to SQLite database file.",
     )
     return parser.parse_args()
@@ -61,4 +65,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

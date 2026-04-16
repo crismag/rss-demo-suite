@@ -5,6 +5,11 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from shared.query_engine import query_entries
 
@@ -25,18 +30,17 @@ def export_entries(
 
 def parse_args() -> argparse.Namespace:
     """Parse CLI arguments."""
-    root = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(description="Export entries from SQLite to JSON.")
     parser.add_argument(
         "--db",
         type=Path,
-        default=root / "data" / "rss_demo.db",
+        default=ROOT / "data" / "rss_demo.db",
         help="Path to SQLite database file.",
     )
     parser.add_argument(
         "--out",
         type=Path,
-        default=root / "web" / "data" / "entries.json",
+        default=ROOT / "web" / "data" / "entries.json",
         help="Output JSON file path.",
     )
     parser.add_argument("--category", type=str, default=None, help="Category filter.")
@@ -59,4 +63,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
