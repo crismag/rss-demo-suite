@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from datetime import datetime, timezone
 from time import mktime
 from typing import Any, Dict, List, Optional
@@ -48,7 +49,7 @@ def _normalize_entry(entry: Any) -> Dict[str, Any]:
     key = guid or link
     if not key and (title or summary):
         # Stable fallback key when guid/link are missing.
-        fingerprint = "\x00".join([title or "", published_iso or "", summary or ""])
+        fingerprint = json.dumps([title or "", published_iso or "", summary or ""], separators=(",", ":"))
         key = hashlib.sha256(fingerprint.encode("utf-8")).hexdigest()
 
     return {

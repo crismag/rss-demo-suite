@@ -24,7 +24,11 @@ def ingest(config_path: Path, db_path: Path) -> None:
     with get_connection(db_path) as conn:
         for category, urls in feeds_by_category.items():
             for url in urls:
-                parsed = parse_feed(url)
+                try:
+                    parsed = parse_feed(url)
+                except Exception as exc:
+                    print(f"{category}: {url} -> failed to parse ({exc})")
+                    continue
                 feed_id = upsert_feed(conn, url=url, category=category, title=parsed.get("title"))
 
                 inserted_count = 0

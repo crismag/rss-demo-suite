@@ -9,10 +9,13 @@ from typing import Any, Dict, List, Optional
 
 
 ALLOWED_SORT_FIELDS = {"published_ts", "ingested_at", "title"}
-SORT_COLUMN_MAP = {
-    "published_ts": "e.published_ts",
-    "ingested_at": "e.ingested_at",
-    "title": "e.title",
+ORDER_BY_MAP = {
+    "published_ts:asc": "e.published_ts ASC",
+    "published_ts:desc": "e.published_ts DESC",
+    "ingested_at:asc": "e.ingested_at ASC",
+    "ingested_at:desc": "e.ingested_at DESC",
+    "title:asc": "e.title ASC",
+    "title:desc": "e.title DESC",
 }
 
 
@@ -77,9 +80,8 @@ def query_entries(
         sql += " AND e.published_ts <= ?"
         params.append(_to_unix(end_date))
 
-    # Safe because `sort_by` is validated against a fixed map above.
-    sort_column = SORT_COLUMN_MAP[sort_by]
-    sql += f" ORDER BY {sort_column} {order.upper()} LIMIT ?"
+    order_clause = ORDER_BY_MAP[f"{sort_by}:{order}"]
+    sql += f" ORDER BY {order_clause} LIMIT ?"
     params.append(max(1, int(limit)))
 
     with sqlite3.connect(str(db_path)) as conn:
