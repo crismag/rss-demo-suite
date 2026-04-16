@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 from datetime import datetime, timezone
 from time import mktime
 from typing import Any, Dict, List, Optional
@@ -32,8 +33,6 @@ def _normalize_entry(entry: Any) -> Dict[str, Any]:
     """Normalize feed entry fields for storage and querying."""
     guid = entry.get("id") or entry.get("guid")
     link = entry.get("link")
-    key = guid or link
-
     published_struct = entry.get("published_parsed") or entry.get("updated_parsed")
     published_iso = _to_iso_datetime(published_struct)
     published_unix = int(mktime(published_struct)) if published_struct else None
@@ -44,15 +43,22 @@ def _normalize_entry(entry: Any) -> Dict[str, Any]:
         if term:
             tags.append(str(term))
 
+    title = entry.get("title")
+    summary = entry.get("summary")
+    key = guid or link
+    if not key and (title or summary):
+        # Stable fallback key when guid/link are missing.
+        fingerprint = f"{title or ''}|{published_iso or ''}|{summary or ''}"
+        key = hashlib.sha1(fingerprint.encode("utf-8")).hexdigest()
+
     return {
         "entry_key": key,
         "guid": guid,
-        "title": entry.get("title"),
+        "title": title,
         "link": link,
-        "summary": entry.get("summary"),
+        "summary": summary,
         "author": entry.get("author"),
         "published": published_iso,
         "published_ts": published_unix,
         "categories": tags,
     }
-

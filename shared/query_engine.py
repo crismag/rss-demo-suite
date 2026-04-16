@@ -9,6 +9,11 @@ from typing import Any, Dict, List, Optional
 
 
 ALLOWED_SORT_FIELDS = {"published_ts", "ingested_at", "title"}
+SORT_COLUMN_MAP = {
+    "published_ts": "e.published_ts",
+    "ingested_at": "e.ingested_at",
+    "title": "e.title",
+}
 
 
 def _to_unix(date_value: str) -> int:
@@ -72,12 +77,11 @@ def query_entries(
         sql += " AND e.published_ts <= ?"
         params.append(_to_unix(end_date))
 
-    sql += f" ORDER BY e.{sort_by} {order.upper()} LIMIT ?"
+    sort_column = SORT_COLUMN_MAP[sort_by]
+    sql += f" ORDER BY {sort_column} {order.upper()} LIMIT ?"
     params.append(max(1, int(limit)))
 
-    conn = sqlite3.connect(str(db_path))
-    conn.row_factory = sqlite3.Row
-    rows = conn.execute(sql, params).fetchall()
-    conn.close()
-    return [dict(row) for row in rows]
-
+    with sqlite3.connect(str(db_path)) as conn:
+        conn.row_factory = sqlite3.Row
+        rows = conn.execute(sql, params).fetchall()
+        return [dict(row) for row in rows]
