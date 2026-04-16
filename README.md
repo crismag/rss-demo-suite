@@ -1,187 +1,120 @@
-# rss-demo-suite
+# RSS Demo Suite
 
-RSS Demo Suite: From simple feed parsing to a queryable data platform with filtering, aggregation, and insights.
+RSS Demo Suite is a tutorial project that shows how RSS feeds can move from a
+simple parser to a searchable, exportable demo pipeline.
 
-## Quick start
+## Quick Start
 
 ```bash
 python -m pip install feedparser pyyaml
-python scripts/ingest_feeds.py
-python scripts/export_json.py
-```
-# RSS Demo Suite
-
-A modern, developer-focused demonstration of RSS capabilities — evolving from simple feed parsing into a lightweight data ingestion, querying, and insights platform.
-Note. All described below are development targets. In progress
-
----
-
-## 🚀 Overview
-
-The **RSS Demo Suite** is designed to showcase the power of RSS beyond basic feed reading.
-
-This project demonstrates how RSS can be transformed into:
-
-* Structured datasets
-* Queryable content sources
-* Aggregated multi-domain feeds
-* Insight-ready data pipelines
-
-It is built as a progressive system with multiple levels of capability, making it ideal for learning, experimentation, and portfolio demonstration.
-
----
-
-## 🧱 Demo Levels
-
-### 🔹 Level 1 — Basic RSS Parsing
-
-* Fetch RSS feeds
-* Parse and display entries
-* Demonstrates simplicity and accessibility of RSS
-
----
-
-### 🔹 Level 2 — Aggregation Engine
-
-* Multi-feed ingestion
-* SQLite-backed storage
-* Deduplication of entries
-* Categorized content (tech, sports, finance, church)
-
----
-
-### 🔹 Level 3 — Query & Filtering Engine
-
-* Query RSS data using:
-
-  * Category filters
-  * Keyword search
-  * Date ranges
-  * Sorting and limits
-* CLI and URL-style query support
-
----
-
-### 🔹 Level 4 — Insights (Experimental)
-
-* Trending topic detection
-* Keyword frequency analysis
-* Foundation for AI-powered summarization and tagging
-
----
-
-## 🌐 Live Demo (GitHub Pages)
-
-This repository includes a static web demo powered by exported JSON data.
-
-Features:
-
-* Feed browsing by category
-* Search and filtering
-* Query simulation
-* JSON/API-style data view
-
----
-
-## ⚙️ Architecture
-
-```
-RSS Feeds
-   ↓
-Ingestion Scripts (Python)
-   ↓
-SQLite Database
-   ↓
-Query Engine
-   ↓
-JSON Export
-   ↓
-Static Web UI (GitHub Pages)
+# Run the Level 2 tutorial wrapper or the shared engine
+python level2-aggregator/python/ingest_feeds.py
+# or
+python scripts/python/rss_ingestion_engine.py
+# Export JSON for the web demo
+python scripts/python/export_json.py
 ```
 
----
+## What The Demo Covers
 
-## 📂 Repository Structure
+### Level 1: Basic Parsing
 
+The first tutorial script loads `feeds.yaml`, picks one feed, and prints a few
+entry titles.
+
+Run it with:
+
+```bash
+python level1-basic/python/demo.py
+php level1-basic/php/demo.php
 ```
+
+The Python and PHP versions follow the same tutorial flow so you can compare
+the two languages side by side.
+
+### Level 2: Aggregation
+
+The ingestion script downloads every configured feed and stores normalized
+entries in SQLite.
+
+Run it with:
+
+```bash
+python level2-aggregator/python/ingest_feeds.py
+php level2-aggregator/php/ingest.php
+```
+
+The Python wrapper mirrors the shared engine so you can compare the same
+workflow in two languages.
+
+### Level 3: Query And Insights
+
+The query and trends scripts show how to filter stored entries and summarize
+their titles.
+
+Run them with (run these commands from the repository root so imports resolve):
+
+```bash
+# Query the SQLite store (examples)
+python level2-aggregator/python/query.py --category tech --keyword AI --limit 5 --format text
+python level2-aggregator/python/query.py --limit 10 --sort latest --days 7 --format json
+
+# Compute simple title trends
+python level3-insights/python/trends.py --top 10
+```
+
+Notes:
+- The scripts assume you run from the repository root (the folder that contains `feeds.yaml` and `shared/`).
+- For the shared scripts under `scripts/python/` you can also run them as a module from the repo root: `python -m scripts.python.rss_ingestion_engine`.
+- The `level2-aggregator` folder name contains a hyphen, so it is not importable as a module name with `-m` (use the file path form above when running the query script).
+
+## Web Demo
+
+Open `web/index.html` for the sample gallery.
+
+The basic static web demo reads exported JSON from
+`web/basic/data/entries.json`.
+
+The PHP dashboard reads the SQLite database and shows the latest ingest
+summary and newest entries from `web/php-dashboard/`.
+
+Generate the file with:
+
+```bash
+python scripts/python/export_json.py
+```
+
+Other sample pages can live under `web/<sample-name>/` and follow the same
+structure.
+
+## Repository Layout
+
+```text
 rss-demo-suite/
-├── level1-basic/        # Simple RSS parsing demos
-├── level2-aggregator/  # Ingestion + SQLite storage
-├── level3-insights/    # Trends and analytics
-├── shared/             # Reusable modules (DB, parsing, query engine)
-├── scripts/            # Ingestion and export scripts
-├── web/                # Static demo UI (GitHub Pages)
-├── docs/               # Documentation
-├── feeds.yaml          # Feed configuration
-└── README.md
+|-- level1-basic/
+|   |-- php/            # Basic RSS parsing tutorial in PHP
+|   `-- python/         # Basic RSS parsing tutorial
+|-- level2-aggregator/
+|   |-- php/            # Aggregation and query tutorial in PHP
+|   `-- python/         # Aggregation and query tutorial
+|-- level3-insights/
+|   `-- python/         # Trend and insights tutorial
+|-- shared/
+|   |-- php/            # Shared PHP helper modules
+|   `-- python/         # Shared helper modules
+|-- scripts/
+|   `-- python/         # Ingestion and export scripts
+|-- web/
+|   |-- index.html      # Gallery landing page for the web samples
+|   |-- basic/          # Current sample static web page
+|   `-- php-dashboard/  # PHP dashboard for the shared SQLite data
+|-- docs/               # Supporting documentation
+`-- feeds.yaml          # Feed configuration
 ```
 
----
+## Notes
 
-## 🔍 Query Examples
-
-Example query patterns supported:
-
-```
-/rss-demo?category=tech&search=AI&limit=5
-/rss-demo?days=1&sort=latest
-/rss-demo?format=json
-```
-
-CLI examples:
-
-```
-python query.py --category tech --search AI --limit 5
-```
-
----
-
-## 💡 Why RSS?
-
-RSS remains one of the most powerful, open, and underutilized technologies on the web.
-
-This project demonstrates how RSS can be used to:
-
-* Build content aggregation platforms
-* Power automation systems
-* Enable structured data pipelines
-* Serve as input for AI and analytics systems
-
----
-
-## 🛠️ Tech Stack
-
-* **Python** — RSS ingestion and processing
-* **SQLite** — lightweight structured storage
-* **JavaScript / HTML / CSS** — frontend demo UI
-* **GitHub Pages** — static hosting
-
----
-
-## 🚧 Project Status
-
-Active development.
-
-This project is being built as a rapid demonstration and portfolio system, with iterative improvements across multiple levels.
-
----
-
-## 📌 Future Enhancements
-
-* AI-based summarization and tagging
-* Personalized feed generation
-* REST API layer
-* Social media and external integrations
-* Advanced query language (OData-inspired)
-
----
-
-## 🤝 Contributions
-
-This is a demo-focused project, but contributions, ideas, and improvements are welcome.
-
----
-
-## 📖 License
-
-MIT License (or your preferred license)
+- `feeds.yaml` defines the sample RSS feeds used by the demos.
+- `level2-aggregator/db.sqlite` is created when you run ingestion.
+- The repo is intentionally tutorial-oriented, so the scripts favor clarity
+  over abstraction.

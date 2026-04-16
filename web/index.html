@@ -1,17 +1,131 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RSS Demo Suite</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSS Demo Suite Web Samples</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --bg: #f6f0e8;
+            --panel: #fffaf4;
+            --border: #dccab5;
+            --text: #211913;
+            --muted: #66594d;
+            --accent: #7a4c2a;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, #fff7ea 0, transparent 30%),
+                var(--bg);
+        }
+
+        main {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 56px 20px;
+        }
+
+        .hero {
+            margin-bottom: 28px;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        h1,
+        h2 {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            max-width: 14ch;
+        }
+
+        .lead {
+            max-width: 66ch;
+            line-height: 1.65;
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        .cards {
+            display: grid;
+            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        .card {
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            background: rgba(255, 250, 244, 0.92);
+            box-shadow: 0 16px 32px rgba(74, 52, 31, 0.08);
+        }
+
+        .card p {
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .card a {
+            display: inline-flex;
+            margin-top: 10px;
+            color: #fffaf4;
+            background: var(--accent);
+            text-decoration: none;
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
     <main>
-      <h1>RSS Demo Suite</h1>
-      <p>Latest ingested entries:</p>
-      <ul id="entries"></ul>
+        <section class="hero">
+            <p class="eyebrow">RSS Demo Suite</p>
+            <h1>Web samples for the tutorial feeds</h1>
+            <p class="lead">
+                This folder works as a small gallery. Each sample keeps its own
+                code and data so you can add more pages without mixing their
+                assets together.
+            </p>
+        </section>
+
+        <section class="cards">
+            <article class="card">
+                <h2>Basic Static View</h2>
+                <p>
+                    Reads exported JSON and shows a simple browser preview of the
+                    feed entries.
+                </p>
+                <a href="basic/">Open Basic Sample</a>
+            </article>
+
+            <article class="card">
+                <h2>PHP Dashboard</h2>
+                <p>
+                    Reads the SQLite database, shows the latest ingest run, and
+                    lists the newest stored entries.
+                </p>
+                <a href="php-dashboard/">Open PHP Dashboard</a>
+            </article>
+        </section>
     </main>
-    <script src="app.js"></script>
-  </body>
+</body>
 </html>
