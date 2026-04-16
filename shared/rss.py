@@ -48,7 +48,7 @@ def _normalize_entry(entry: Any) -> Dict[str, Any]:
     key = guid or link
     if not key and (title or summary):
         # Stable fallback key when guid/link are missing.
-        fingerprint = f"{title or ''}|{published_iso or ''}|{summary or ''}"
+        fingerprint = "\x00".join([title or "", published_iso or "", summary or ""])
         key = hashlib.sha256(fingerprint.encode("utf-8")).hexdigest()
 
     return {

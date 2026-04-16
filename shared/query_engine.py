@@ -77,6 +77,7 @@ def query_entries(
         sql += " AND e.published_ts <= ?"
         params.append(_to_unix(end_date))
 
+    # Safe because `sort_by` is validated against a fixed map above.
     sort_column = SORT_COLUMN_MAP[sort_by]
     sql += f" ORDER BY {sort_column} {order.upper()} LIMIT ?"
     params.append(max(1, int(limit)))
